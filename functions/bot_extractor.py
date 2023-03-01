@@ -6,10 +6,10 @@ class BotExtarctor:
     """
     A class that extarcts a seires mappimg game_id to the bot opponet
     """
-    def __init__(self, bot_names: Iterable[str]) -> None:
+    def __init__(self, bot_names: Iterable[str], name_col='nickname') -> None:
         self.bot_names = bot_names
+        self.name_col = name_col
     
 
     def __call__(self, data: pd.DataFrame) -> pd.Series:
-        name_col = 'nickname'
-        return data[data[name_col].isin(self.bot_names)][name_col]
+        return data[data[self.name_col].isin(self.bot_names)][self.name_col]
