@@ -12,6 +12,4 @@ class ColumnsSetterTransformer(BaseEstimator, TransformerMixin):
         return self
     
     def transform(self, X, y=None):
-        for name in self.columns:
-            X = X.assign(**{name: self.columns[name]})
-        return X
+        return X.assign(**self.columns)

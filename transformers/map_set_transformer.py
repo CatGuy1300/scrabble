@@ -1,6 +1,7 @@
 import pandas as pd
 from sklearn.base import BaseEstimator, TransformerMixin
 from typing import Dict, Callable, Tuple
+from transformers.columns_setter_transformer import ColumnsSetterTransformer
 
 
 class MapSetTransformer(BaseEstimator, TransformerMixin):
@@ -12,6 +13,5 @@ class MapSetTransformer(BaseEstimator, TransformerMixin):
         return self
     
     def transform(self, X, y=None):
-        for name in self.columns:
-            X = X.assign(**{name: self.columns[name]})
-        return X
+        return ColumnsSetterTransformer({new_col: lambda df, mapper=mapper, old_col=old_col: df[old_col].apply(mapper)
+                                         for new_col, (mapper, old_col) in self.columns.items()}).transform(X)
