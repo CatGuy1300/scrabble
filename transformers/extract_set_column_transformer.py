@@ -12,6 +12,9 @@ class ExtractSetColumnsTransformer(BaseEstimator, TransformerMixin):
         self.extarctors = extarctors
         self.src = src
         self.dest = dest 
+
+    def fit(self, X, y=None):
+        return self
     
     def transform(self, X, y=None):
         result = None
