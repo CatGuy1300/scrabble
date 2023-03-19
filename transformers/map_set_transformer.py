@@ -5,6 +5,10 @@ from transformers.columns_setter_transformer import ColumnsSetterTransformer
 
 
 class MapSetTransformer(BaseEstimator, TransformerMixin):
+    """
+    Set the given columns using the given data map and old column's name.
+    If target is not None then treats X as a dictionary and activates on target entry.
+    """
     def __init__(self, columns: Dict[str, Tuple[Callable[[any], any], str]], target: str = None) -> None:
         self.columns = columns
         self.target = target
