@@ -4,7 +4,7 @@ import pandas as pd
 
 class BotExtarctor:
     """
-    A class that extarcts a seires mappimg game_id to the bot opponet
+    Extarcts a seires mappimg game_id to the bot opponet
     """
     def __init__(self, bot_names: Iterable[str], name_col='nickname') -> None:
         self.bot_names = bot_names

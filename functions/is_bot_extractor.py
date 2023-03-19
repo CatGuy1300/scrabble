@@ -3,7 +3,7 @@ import pandas as pd
 
 class IsBotExtarctor:
     """
-    A class that extarcts a seires mappimg game_id corresponding to
+    Extarcts a seires mappimg game_id corresponding to
     name (meaning there could be duplicated game_ids) to wether it is a bot
     """
     def __init__(self, bot_names: Iterable[str], name_col='nickname', neg=False) -> None:
