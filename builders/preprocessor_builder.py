@@ -15,7 +15,7 @@ class PreprocessorBuilder:
     
 
     def build(self) -> BasicPreProcessor:
-        return self.__build_preProcessor()
+        return self.__build_preprocessor()
     
-    def __build_preProcessor(self) -> BasicPreProcessor:
+    def __build_preprocessor(self) -> BasicPreProcessor:
         return BasicPreProcessor(self.preprocessPipe, self.games, self.turns, self.g_name, self.t_name)
