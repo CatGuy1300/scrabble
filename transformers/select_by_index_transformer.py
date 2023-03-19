@@ -3,8 +3,8 @@ import pandas as pd
 
 class SelectByIndexTransformer(BaseEstimator, TransformerMixin):
     """
-    selects the rows corresponding to given indexes.
-    if target is not none then treats X as a dict, and selects rows of target.
+    Selects the rows corresponding to given indexes.
+    If target is not none then treats X as a dict, and selects rows of target.
     """
     def __init__(self, selection: pd.Index, target: str = None) -> None:
         self.selection = selection
