@@ -19,11 +19,11 @@ class MapSetTransformer(BaseEstimator, TransformerMixin):
     
     def transform(self, X, y=None):
         result = None
+        mapping = {new_col: lambda df, mapper=mapper, old_col=old_col: df[old_col].apply(mapper)
+                   for new_col, (mapper, old_col) in self.columns.items()}
         if self.target != None:
             result = X.copy()
-            result[self.target] = ColumnsSetterTransformer({new_col: lambda df, mapper=mapper, old_col=old_col: df[old_col].apply(mapper)
-                                         for new_col, (mapper, old_col) in self.columns.items()}).transform(X[self.target])
+            result[self.target] = ColumnsSetterTransformer(mapping).transform(X[self.target])
         else:
-            result = ColumnsSetterTransformer({new_col: lambda df, mapper=mapper, old_col=old_col: df[old_col].apply(mapper)
-                                         for new_col, (mapper, old_col) in self.columns.items()}).transform(X)
+            result = ColumnsSetterTransformer(mapping).transform(X)
         return result
