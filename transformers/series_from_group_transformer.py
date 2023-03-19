@@ -2,6 +2,10 @@ from sklearn.base import BaseEstimator, TransformerMixin
 import pandas as pd
 
 class SeriesFromGroupTransformer(BaseEstimator, TransformerMixin):
+    '''
+    Makes a new series by grouping by groupby str, and indexing each entry 
+    in the new series by indexby.
+    '''
     def __init__(self, groupby: str, indexby: str) -> None:
         self.groupby = groupby
         self.indexby = indexby
