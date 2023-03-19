@@ -4,7 +4,7 @@ from typing import Union
 from sklearn.base import BaseEstimator, TransformerMixin
 import pandas as pd
 
-class SelectPosRowsTransformer(BaseEstimator, TransformerMixin):
+class SelectByMaskTransformer(BaseEstimator, TransformerMixin):
     """
     Selects given columns/rows corresponding to boolian data seires (should be with same number of rows as the transform target)
     """

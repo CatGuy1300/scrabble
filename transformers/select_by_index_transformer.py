@@ -1,7 +1,7 @@
 from sklearn.base import BaseEstimator, TransformerMixin
 import pandas as pd
 
-class SelectRowsTransformer(BaseEstimator, TransformerMixin):
+class SelectByIndexTransformer(BaseEstimator, TransformerMixin):
     """
     selects the rows corresponding to given indexes.
     if target is not none then treats X as a dict, and selects rows of target.
