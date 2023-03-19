@@ -2,7 +2,10 @@ from board_helpers.board_consts import TileType, BOARD
 from board_helpers.move_info import MoveInfo
 from typing import Dict
 
-class TilesCoutner:
+class TilesCounter:
+    '''
+    Counts number of tiles of each type in the board, going from given a location and a move (word you put in scrabble)
+    '''
     def __init__(self, location: str, move: str) -> None:
         info = MoveInfo(location, move)
         self.x = info.x
