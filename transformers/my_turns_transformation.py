@@ -1,6 +1,8 @@
 import pandas as pd
 from sklearn.base import BaseEstimator, TransformerMixin
 from sklearn.pipeline import Pipeline
+from os.path import normpath, join, dirname
+
 
 from functions.is_bot_extractor import IsBotExtarctor
 
@@ -42,7 +44,7 @@ class MyTurnsTransformation(BaseEstimator, TransformerMixin):
         return initial_pipe.transform(turns)
     
     def __to_tsfresh_features(self, X):
-        features = np.load('../feature_selection_consts/columns.npy', allow_pickle=True)
+        features = np.load(normpath(join(dirname(__file__), '../feature_selection_consts/columns.npy')), allow_pickle=True)
 
         a_extracted = self.__extract_features(X, features, 'a_')
         p_extracted = self.__extract_features(X[X['is_player']==1], features, 'p_')
