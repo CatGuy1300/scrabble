@@ -60,7 +60,9 @@ if __name__ == "__main__":
                     MapSetTransformer({letter: (lambda x, letter=letter: x.count(letter) if type(x) == str else 0, 'move') for letter in letters})),
                     ('count_tiles_used', 
                     ExtractSetColumnsTransformer(
-                        {str(t_type): (lambda turns, t_type=t_type: turns.apply(lambda x: TilesCounter(x['location'], x['move'])()[t_type] if type(x['location'])==str and type(x['move'])==str else 0, axis=1)) 
+                        {str(t_type): (lambda turns, t_type=t_type: 
+                                       turns.apply(lambda x: 
+                                                   TilesCounter(x['location'], x['move'])()[t_type] if type(x['location'])==str and type(x['move'])==str else 0, axis=1)) 
                         for t_type in TileType}
                     )),
                     ('special_tiles', 
@@ -68,7 +70,7 @@ if __name__ == "__main__":
                         {'special_type': (lambda turns: turns.apply(lambda x: x['TileType.L2'] + x['TileType.L3'] + x['TileType.W2'] + x['TileType.W3'], axis=1))}
                     )),
                     ('turns_word_info_mappers', MapSetTransformer({'move_len': (lambda x: len(x) if type(x) == str else 0, 'move'), 
-                                                                'jokers_num': (lambda x: sum(1 for c in x if c.islower()) if (type(x) == str) and (x not in ['(challenge)', '(time)']) else 0, 'move'),
+                                                                   'jokers_num': (lambda x: sum(1 for c in x if c.islower()) if (type(x) == str) and (x not in ['(challenge)', '(time)']) else 0, 'move'),
                                                     }),),
                     ('set_is_player', ExtractSetColumnsTransformer({'is_player': IsBotExtarctor(names, 'nickname', True)},)), 
                     # ('bool_to_int', ExtractSetColumnsTransformer({'is_player': lambda turns: turns['is_player'].astype(int)})),
