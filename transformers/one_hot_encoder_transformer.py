@@ -27,6 +27,8 @@ class OneHotEncoderTransformer(BaseEstimator, TransformerMixin):
         else:
             arg_target = X
     
+        index = arg_target.index
+        arg_target = arg_target.reset_index() # so indexes will be unique
         for column in self.columns:
             # creates seris eith neg indexes, so when contacting won't have dups indexes
             values = pd.Series(self.columns[column],
@@ -34,6 +36,7 @@ class OneHotEncoderTransformer(BaseEstimator, TransformerMixin):
             
             dummies = pd.get_dummies(pd.concat([arg_target[column], values]), prefix=column, dummy_na=True)
             arg_target = arg_target.merge(dummies, left_index=True, right_index=True)
+        arg_target = arg_target.set_index(index)
 
         if self.target != None:
             result = X.copy()
