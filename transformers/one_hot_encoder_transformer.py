@@ -28,7 +28,7 @@ class OneHotEncoderTransformer(BaseEstimator, TransformerMixin):
             arg_target = X
     
         index = arg_target.index
-        arg_target = arg_target.reset_index() # so indexes will be unique
+        arg_target = arg_target.reset_index(drop=True) # so indexes will be unique
         for column in self.columns:
             # creates seris eith neg indexes, so when contacting won't have dups indexes
             values = pd.Series(self.columns[column],
