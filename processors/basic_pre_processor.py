@@ -20,4 +20,5 @@ class BasicPreProcessor:
     
     def process(self, data: Union[pd.DataFrame, pd.Series], data_name: str) -> Tuple[pd.DataFrame, pd.DataFrame, pd.Series]:
         new_data_dict = self.pipeline.transform({data_name: data, self.g_name: self.games, self.t_name: self.turns})
+        new_data_dict[self.g_name]['score'] = new_data_dict[data_name]['score']
         return new_data_dict[self.g_name], new_data_dict[self.t_name], new_data_dict[data_name]['rating']
